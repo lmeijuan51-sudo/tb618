@@ -1,6 +1,6 @@
 function run () {
     var pvStr = 'RZhePac';
-    var endStr = 'izxsLtB';
+    var endStr = 'RZhePac';
     var data = [];
     var More = configValue ? configValue : 1;
     var taobaoScheme = {
