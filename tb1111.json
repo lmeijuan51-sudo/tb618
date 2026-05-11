@@ -1,58 +1,110 @@
-"activity": {
-    "tip":"全部运行完再看任务完成度\n---------------\n一个手机不能运行超过三个账号\n---------------\n",
-    "list":[
-        "🍔开始任务🍔"
+{
+  "activity": {
+    "tip": "全部运行完再看任务完成度\n---------------\n一个手机不能运行超过三个账号\n---------------\n",
+    "list": [
+      "🍔开始任务🍔"
     ],
-    "mapping" :{
-        "设置多账号|自动化":{
-            "tip":"多账号设置 不同APP登录不同账号",
-            "list":[
-                "淘宝运行---初始形式",
-                "淘宝+天猫运行",
-                "淘+天+点淘运行",
-                "自动化程度程度连接"
-            ],
-            "mapping":{
-                "淘宝运行---初始形式":{
-                    "type":"set",
-                    "value":"1"
-                },
-                "淘宝+天猫运行":{
-                    "type":"set",
-                    "value":"2"
-                },
-                "淘+天+点淘运行":{
-                    "type":"set",
-                    "value":"3"
-                },
-                "自动化连接":{
-                    "type":"copy",
-                    "value":"shortcuts://run-shortcut?name=淘宝-赚话费&input=text&text=run"
-                }   
-            }
-        },
-        "活动入口":{
-            "list":[
-                "淘宝",
-                "天猫",
-                "点淘"
-            ],
-            "mapping":{
-                "淘宝":{
-                    "url":"taobao://pages.tmall.com/wow/z/wt/daily-earn-shee/8thjJK38HwhfMAskzDiN?disableNav=YES"
-                },
-                "天猫":{
-                    "url":"tmall://page.tm/appLink?&action=ali.open.nav&h5Url=https%3A%2F%2Fpages.tmall.com%2Fwow%2Fz%2Fwt%2Fdaily-earn-shee%2F8thjJK38HwhfMAskzDiN%3FdisableNav%3DYES"
-                },
-                "点淘":{
-                    "url":"taobaoliveshare://pages.tmall.com/wow/z/wt/daily-earn-shee/8thjJK38HwhfMAskzDiN?disableNav=YES"
-                }
-            }
-        },
-        "❤️开始任务❤️":{
-            "type":"task",
-            "key":["赚话费"]
+    "mapping": {
+      "设置多账号|自动化": {
+        "tip": "多账号设置 不同APP登录不同账号",
+        "list": [
+          "淘宝运行---初始形式",
+          "淘宝+天猫运行",
+          "淘+天+点淘运行",
+          "自动化连接"
+        ],
+        "mapping": {
+          "淘宝运行---初始形式": {
+            "type": "set",
+            "value": "1"
+          },
+          "淘宝+天猫运行": {
+            "type": "set",
+            "value": "2"
+          },
+          "淘+天+点淘运行": {
+            "type": "set",
+            "value": "3"
+          },
+          "自动化连接": {
+            "type": "copy",
+            "value": "shortcuts://run-shortcut?name=淘宝-赚话费&input=text&text=run"
+          }
         }
+      },
+      "活动入口": {
+        "list": [
+          "淘宝",
+          "天猫",
+          "点淘"
+        ],
+        "mapping": {
+          "淘宝": {
+            "url": "taobao://pages.tmall.com/wow/z/wt/daily-earn-shee/8thjJK38HwhfMAskzDiN?disableNav=YES"
+          },
+          "天猫": {
+            "url": "tmall://page.tm/appLink?&action=ali.open.nav&h5Url=https%3A%2F%2Fpages.tmall.com%2Fwow%2Fz%2Fwt%2Fdaily-earn-shee%2F8thjJK38HwhfMAskzDiN%3FdisableNav%3DYES"
+          },
+          "点淘": {
+            "url": "taobaoliveshare://pages.tmall.com/wow/z/wt/daily-earn-shee/8thjJK38HwhfMAskzDiN?disableNav=YES"
+          }
+        }
+      },
+      "🍔开始任务🍔": {
+        "type": "task",
+        "key": [
+          "赚话费"
+        ]
+      }
     },
-    "taskList":["赚话费"]
+    "taskList": [
+      "赚话费"
+    ]
+  },
+  "taskData": {
+    "tag": "zhuanhuafei",
+    "common": {
+      "url": "https://raw.githubusercontent.com/lmeijuan51-sudo/tb618/main/tb.txt"
+    },
+    "赚话费": {
+      "type": "task1",
+      "endpage": "taobao://m.taobao.com/tbopen/index.html?h5Url=https%3A%2F%2Fm.taobao.com",
+      "main": "taobao://m.taobao.com/tbopen/index.html?h5Url=https%3A%2F%2Fm.taobao.com",
+      "endMessage": "任务结束",
+      "task": {
+        "tag": "zhuanhuafei",
+        "scheme": "taobao://m.taobao.com/tbopen/index.html?h5Url=",
+        "baseurl": "://market.m.taobao.com/app/tbsearchwireless-pages/tao-gold-srp-task-pop/index?deliveryId=占位参数1&sceneId=8917&q=iphone",
+        "wait": 15,
+        "wait2": "",
+        "param": {
+          "商品定位": [
+            "nike",
+            "anta",
+            "adidas",
+            "chanel",
+            "dior",
+            "biotherm",
+            "oppo"
+          ]
+        },
+        "before": [],
+        "item": [
+          "100340",
+          "100453",
+          "100531",
+          "99889",
+          "100454",
+          "100493",
+          "100447",
+          "99658",
+          "99672",
+          "99666",
+          "99720",
+          "90782",
+          "100638"
+        ]
+      }
+    }
+  }
 }
