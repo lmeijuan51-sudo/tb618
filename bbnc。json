@@ -1,11 +1,13 @@
 ```javascript
 function run() {
-    // 已更新为最新的暗号
+    // 1. 更新为你的最新暗号
     var pvStr = 'RaNWHQ2'; 
     var endStr = 'iA1LaGO';
     
     var data = [];
-    var More = typeof configValue !== 'undefined' ? configValue : 1;
+    // 兼容快捷指令传入的变量
+    var More = (typeof configValue !== 'undefined' && configValue) ? configValue : 1;
+    var currentRunNum = (typeof runNum !== 'undefined') ? runNum : 0;
 
     var taobaoScheme = {
         scheme: "taobao",
@@ -14,6 +16,7 @@ function run() {
         end: "taobao://m.tb.cn/h." + endStr
     };
     
+    // 其他平台配置 (天猫/点淘)
     var tmScheme = {
         scheme: "tmall://page.tm/appLink?&action=ali.open.nav&h5Url=",
         main: "tmall://page.tm/appLink?&action=ali.open.nav&h5Url=https%3A%2F%2Fwww.tmall.com%2F",
@@ -21,25 +24,10 @@ function run() {
         end: "tmall://page.tm/appLink?&action=ali.open.nav&h5Url=https%3A%2F%2Fwww.tmall.com%2F",
         type: "url"
     };
-    
-    var dtScheme = {
-        scheme: "taobaoliveshare",
-        main: "taobaoliveshare://m.taobaolive.com/home.html",
-        start: "taobaoliveshare://m.tb.cn/h." + pvStr,
-        end: "taobaoliveshare://m.taobaolive.com/home.html"
-    };
 
-    var schemes = {
-        1: [taobaoScheme],
-        2: [tmScheme, taobaoScheme],
-        3: [taobaoScheme, tmScheme, dtScheme],
-        4: [tmScheme],
-        5: [dtScheme]
-    };
-    
-    var scheme = schemes[More];
-    var taskListNames = DATA.activity.taskList;
-    var taskList = taskListNames.map(function(v) { return DATA.taskData[v]; });
+    var schemes = { 1: [taobaoScheme], 2: [tmScheme, taobaoScheme] };
+    var scheme = schemes[More] || [taobaoScheme];
+    var taskList = DATA.activity.taskList.map(function(v) { return DATA.taskData[v]; });
 
     scheme.map(function(s) {
         taskList.map(function(oneTask) {
@@ -49,37 +37,22 @@ function run() {
             var wait = oneTask.task.wait;
             var paramObj = oneTask.task.param;
 
-            // 1. 运行开始页
-            if (s && s.start) {
-                data.push({ url: s.start, wait: 5 });
-            }
+            // 添加开始暗号页 (最重要的跳转)
+            data.push({ url: s.start, wait: 5 });
 
-            // 2. 运行前置任务 (如果为空则跳过)
-            before.map(function(v, i) {
-                data.push({
-                    url: s.type ? s.scheme + encodeURIComponent('https' + v.url) : s.scheme + v.url,
-                    wait: v.wait
-                });
-                if (i % 2 === 0) {
-                    data.push({ url: s.main, wait: 5 });
-                }
-            });
-
-            // 3. 运行主任务列表
+            // 运行任务列表
             itme.map(function(v, i) {
                 var url = baseUrl;
                 for (var key in paramObj) {
                     var paramArr = paramObj[key];
                     var reg = new RegExp(key, 'g');
-                    var randomParam = paramArr[Math.floor(Math.random() * paramArr.length)];
-                    url = url.replace(reg, randomParam);
+                    url = url.replace(reg, paramArr[Math.floor(Math.random() * paramArr.length)]);
                 }
                 
                 var params = v.split(' ');
                 params.map(function(val, idx) {
                     if (val) {
-                        var regPos = new RegExp('占位参数' + (idx + 1), 'g');
-                        url = url.replace(regPos, val);
+                        url = url.replace(new RegExp('占位参数' + (idx + 1), 'g'), val);
                     }
                 });
 
@@ -88,23 +61,28 @@ function run() {
                     wait: wait
                 });
 
-                if (i % 2 === 0) {
-                    data.push({ url: s.main, wait: 5 });
-                }
+                // 每2个任务回一次主页，防止弹窗卡死
+                if (i % 2 === 0) data.push({ url: s.main, wait: 5 });
             });
 
-            // 4. 运行结束页
-            if (s && s.end) {
-                data.push({ url: s.end, wait: 5 });
-            }
+            // 添加结束暗号页
+            data.push({ url: s.end, wait: 5 });
         });
     });
 
-    if (typeof runNum !== 'undefined' && runNum > 1) {
-        data = data.slice(runNum - 1);
+    // 处理分步执行逻辑
+    if (currentRunNum > 1) {
+        data = data.slice(currentRunNum - 1);
     }
 
-    return JSON.stringify({ succes: 'ok', data: data });
+    // 统一输出格式，确保快捷指令能识别到 "url" 键
+    return JSON.stringify({
+        success: 'ok',
+        data: data,
+        // 增加一个直观的 url 字段供快捷指令直接读取
+        url: data[0] ? data[0].url : "",
+        wait: data[0] ? data[0].wait : 5
+    });
 }
 
 ```
