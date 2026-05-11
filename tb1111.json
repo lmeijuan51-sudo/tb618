@@ -1,7 +1,7 @@
 {
     "activity":{
         "tip":"全部运行完再看任务完成度\n---------------\n一个手机不能运行超过三个账号\n---------------\n",
-        "list":["🍔开始任务🍔"],
+        "list":["❤️开始任务❤️"],
         "mapping":{
             "设置多账号|自动化":{
                 "tip":"多账号设置 不同APP登录不同账号",
@@ -21,7 +21,7 @@
                     "点淘":{"url":"taobaoliveshare://pages.tmall.com/wow/z/wt/daily-earn-shee/8thjJK38HwhfMAskzDiN?disableNav=YES"}
                 }
             },
-            "🍔开始任务🍔":{"type":"task","key":["赚话费"]}
+            "❤️开始任务❤️":{"type":"task","key":["赚话费"]}
         },
         "taskList":["赚话费"]
     },
@@ -55,4 +55,3 @@
         }
     }
 }
-        
