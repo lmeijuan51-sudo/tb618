@@ -1,0 +1,110 @@
+```javascript
+function run() {
+    // 已更新为最新的暗号
+    var pvStr = 'RaNWHQ2'; 
+    var endStr = 'iA1LaGO';
+    
+    var data = [];
+    var More = typeof configValue !== 'undefined' ? configValue : 1;
+
+    var taobaoScheme = {
+        scheme: "taobao",
+        main: "taobao://m.taobao.com/tbopen/index.html?h5Url=https://m.taobao.com",
+        start: "taobao://m.tb.cn/h." + pvStr,
+        end: "taobao://m.tb.cn/h." + endStr
+    };
+    
+    var tmScheme = {
+        scheme: "tmall://page.tm/appLink?&action=ali.open.nav&h5Url=",
+        main: "tmall://page.tm/appLink?&action=ali.open.nav&h5Url=https%3A%2F%2Fwww.tmall.com%2F",
+        start: "tmall://page.tm/appLink?&action=ali.open.nav&h5Url=https://m.tb.cn/h." + pvStr,
+        end: "tmall://page.tm/appLink?&action=ali.open.nav&h5Url=https%3A%2F%2Fwww.tmall.com%2F",
+        type: "url"
+    };
+    
+    var dtScheme = {
+        scheme: "taobaoliveshare",
+        main: "taobaoliveshare://m.taobaolive.com/home.html",
+        start: "taobaoliveshare://m.tb.cn/h." + pvStr,
+        end: "taobaoliveshare://m.taobaolive.com/home.html"
+    };
+
+    var schemes = {
+        1: [taobaoScheme],
+        2: [tmScheme, taobaoScheme],
+        3: [taobaoScheme, tmScheme, dtScheme],
+        4: [tmScheme],
+        5: [dtScheme]
+    };
+    
+    var scheme = schemes[More];
+    var taskListNames = DATA.activity.taskList;
+    var taskList = taskListNames.map(function(v) { return DATA.taskData[v]; });
+
+    scheme.map(function(s) {
+        taskList.map(function(oneTask) {
+            var itme = oneTask.task.item;
+            var before = oneTask.task.before || [];
+            var baseUrl = oneTask.task.baseurl;
+            var wait = oneTask.task.wait;
+            var paramObj = oneTask.task.param;
+
+            // 1. 运行开始页
+            if (s && s.start) {
+                data.push({ url: s.start, wait: 5 });
+            }
+
+            // 2. 运行前置任务 (如果为空则跳过)
+            before.map(function(v, i) {
+                data.push({
+                    url: s.type ? s.scheme + encodeURIComponent('https' + v.url) : s.scheme + v.url,
+                    wait: v.wait
+                });
+                if (i % 2 === 0) {
+                    data.push({ url: s.main, wait: 5 });
+                }
+            });
+
+            // 3. 运行主任务列表
+            itme.map(function(v, i) {
+                var url = baseUrl;
+                for (var key in paramObj) {
+                    var paramArr = paramObj[key];
+                    var reg = new RegExp(key, 'g');
+                    var randomParam = paramArr[Math.floor(Math.random() * paramArr.length)];
+                    url = url.replace(reg, randomParam);
+                }
+                
+                var params = v.split(' ');
+                params.map(function(val, idx) {
+                    if (val) {
+                        var regPos = new RegExp('占位参数' + (idx + 1), 'g');
+                        url = url.replace(regPos, val);
+                    }
+                });
+
+                data.push({
+                    url: s.type ? s.scheme + encodeURIComponent('https' + url) : s.scheme + url,
+                    wait: wait
+                });
+
+                if (i % 2 === 0) {
+                    data.push({ url: s.main, wait: 5 });
+                }
+            });
+
+            // 4. 运行结束页
+            if (s && s.end) {
+                data.push({ url: s.end, wait: 5 });
+            }
+        });
+    });
+
+    if (typeof runNum !== 'undefined' && runNum > 1) {
+        data = data.slice(runNum - 1);
+    }
+
+    return JSON.stringify({ succes: 'ok', data: data });
+}
+
+```
