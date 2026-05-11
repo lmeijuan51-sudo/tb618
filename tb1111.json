@@ -74,8 +74,7 @@
       "task": {
         "tag": "zhuanhuafei",
         "scheme": "taobao://m.taobao.com/tbopen/index.html?h5Url=",
-        "baseurl": "://market.m.taobao.com/app/tbsearchwireless-pages/tao-gold-srp-task-pop/index?deliveryId=占位参数1&sceneId=8917&q=iphone",
-        "wait": 15,
+"baseurl": "https://market.m.taobao.com/app/tbsearchwireless-pages/tao-gold-srp-task-pop/index?deliveryId=占位参数1&sceneId=8917&q=iphone",        "wait": 15,
         "wait2": "",
         "param": {
           "商品定位": [
