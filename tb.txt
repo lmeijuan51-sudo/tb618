@@ -1,141 +1,57 @@
-function run () {
-    var pvStr = 'RZhePac';
-    var endStr = 'izxsLtB';
-    var data = [];
-    var More = configValue ? configValue : 1;
-
-    var taobaoScheme = {
-      scheme:"taobao",
-      main:"taobao://m.taobao.com/tbopen/index.html?h5Url=https://m.taobao.com",
-      start: "taobao://m.tb.cn/h." + pvStr,
-      end:"taobao://m.tb.cn/h." + endStr,
-      
-    }
-    var tmScheme = {
-      scheme:"tmall://page.tm/appLink?&action=ali.open.nav&h5Url=",
-      main:"tmall://page.tm/appLink?&action=ali.open.nav&h5Url=https%3A%2F%2Fwww.tmall.com%2F",
-      start: "tmall://page.tm/appLink?&action=ali.open.nav&h5Url=https://m.tb.cn/h." + pvStr,
-      end:"tmall://page.tm/appLink?&action=ali.open.nav&h5Url=https%3A%2F%2Fwww.tmall.com%2F",
-      type:"url"
-    }
-    var dtScheme = {
-      scheme:"taobaoliveshare",
-      main:"taobaoliveshare://m.taobaolive.com/home.html",
-      start: "taobaoliveshare://m.tb.cn/h." + pvStr,
-      end:"taobaoliveshare://m.taobaolive.com/home.html",
-    }
-    var schemes = {
-      1:[taobaoScheme],
-      2:[tmScheme,taobaoScheme],
-      3:[taobaoScheme,tmScheme,dtScheme],
-      4:[tmScheme],
-      5:[dtScheme]
-    }
-    var scheme = schemes[More]
-    var taskList = DATA.activity.taskList
-
-
-    taskList = taskList.map((v) => DATA.taskData[v]);
-
-    scheme.map((s) => {
-
-      taskList.map((oneTask) => {
-
-        var itme = oneTask.task.item;
-        var before = oneTask.task.before;
-        var baseUrl = oneTask.task.baseurl
-        var wait = oneTask.task.wait
-        var paramObj = oneTask.task.param
-        //start
-
-        if (s && s.end){
-          data.push({
-            url:s.end,
-            wait:8
-          })
-        }
-        if (s && s.start){
-          data.push({
-            url:s.start,
-            wait:5
-          })
-        }
-        
-
-
-        //before
-        before.map((v,i) => {
-          data.push({
-            url: s.type ? s.scheme + encodeURIComponent('https' + v.url):s.scheme + v.url,
-            wait:v.wait
-          })
-          if (i%2 === 0){
-            data.push({
-              url:s.main,
-              wait:5
-            })
-          }
-        })
-        data.push({
-          url:s.main,
-          wait:5
-        })
-
-        //任务
-        itme.map((v,i) => {
-
-          var str = v;
-          var params = str.split(' ');
-          var url = baseUrl;
-
-
-          for (var key in paramObj){
-
-            var paramArr = paramObj[key]
-            var reg = new RegExp(`${key}`,'g')
-            var str = paramArr[Math.floor((Math.random()*paramArr.length))]
-            url = url.replace(reg,str);
-          }
-          //替换参数2
-          params.map((v,i) => {
-            if (v){
-              var num = i+1;
-              var reg = new RegExp(`占位参数${num}`,'g')
-              url = url.replace(reg,v);
+{
+    "activity":{
+        "tip":"全部运行完再看任务完成度\n---------------\n一个手机不能运行超过三个账号\n---------------\n",
+        "list":["🍔开始任务🍔"],
+        "mapping":{
+            "设置多账号|自动化":{
+                "tip":"多账号设置 不同APP登录不同账号",
+                "list":["淘宝运行---初始形式","淘宝+天猫运行","淘+天+点淘运行","自动化连接"],
+                "mapping":{
+                    "淘宝运行---初始形式":{"type":"set","value":"1"},
+                    "淘宝+天猫运行":{"type":"set","value":"2"},
+                    "淘+天+点淘运行":{"type":"set","value":"3"},
+                    "自动化连接":{"type":"copy","value":"shortcuts://run-shortcut?name=淘宝-薅羊毛赚话费&input=text&text=run"}
+                }
+            },
+            "活动入口":{
+                "list":["淘宝","天猫","点淘"],
+                "mapping":{
+                    "淘宝":{"url":"taobao://pages.tmall.com/wow/z/wt/daily-earn-shee/8thjJK38HwhfMAskzDiN?disableNav=YES"},
+                    "天猫":{"url":"tmall://page.tm/appLink?&action=ali.open.nav&h5Url=https%3A%2F%2Fpages.tmall.com%2Fwow%2Fz%2Fwt%2Fdaily-earn-shee%2F8thjJK38HwhfMAskzDiN%3FdisableNav%3DYES"},
+                    "点淘":{"url":"taobaoliveshare://pages.tmall.com/wow/z/wt/daily-earn-shee/8thjJK38HwhfMAskzDiN?disableNav=YES"}
+                }
+            },
+            "🍔开始任务🍔":{"type":"task","key":["赚话费"]}
+        },
+        "taskList":["赚话费"]
+    },
+    "taskData":{
+        "tag":"zhuanhuafei",
+        "common":{
+            "url":"https://raw.githubusercontent.com/lmeijuan51-sudo/tb618/main/tb.txt"
+        },
+        "赚话费":{
+            "type":"task1",
+            "endpage":"taobao://m.taobao.com/tbopen/index.html?h5Url=https%3A%2F%2Fm.taobao.com",
+            "main":"taobao://m.taobao.com/tbopen/index.html?h5Url=https%3A%2F%2Fm.taobao.com",
+            "endMessage":"任务结束",
+            "task":{
+                "tag":"zhuanhuafei",
+                "scheme":"taobao://m.taobao.com/tbopen/index.html?h5Url=",
+                "baseurl":"://market.m.taobao.com/app/tbsearchwireless-pages/tao-gold-srp-task-pop/index?deliveryId=占位参数1&sceneId=8917&q=iphone",
+                "wait":15,
+                "wait2":"",
+                "param":{"商品定位":["nike","anta","adidas","chanel","dior","biotherm","oppo"]},
+                "before":[],
+                "item":[
+                    "100340","100340","100340","100340","100340","100340","100340","100340","100340","100340",
+                    "100453","100453","100453","100453","100453","100453","100453","100453","100453","100453",
+                    "100531","99889",
+                    "100454","100454","100454","100454","100454",
+                    "100493","100493","100493","100493","100493",
+                    "100447","99658","99672","99666","99889","99720","90782","100638"
+                ]
             }
-          });
-
-          data.push({
-            url:s.type ? s.scheme + encodeURIComponent('https' + url):s.scheme + url,
-            wait:wait
-          })
-
-          if (i%2 === 0){
-            data.push({
-              url:s.main,
-              wait:5
-            })
-          }
-        })
-        if (s && s.end){
-          data.push({
-            url:s.end,
-            wait:5
-          })
         }
-
-
-      })
-    })
-
-    if (runNum > 0 && runNum != 1){
-      data = data.splice(runNum - 1,data.length);
     }
-
-    var dd = {
-      succes: 'ok',
-      data:data
-    };
-
-    return JSON.stringify(dd);
-  };
+}
