@@ -42,19 +42,10 @@
                 "wait":18,
                 "wait2":"",
                 "param":{"商品定位":["手机","电脑","耳机","键盘","相机","音响","平板"]},
-                "before":[
-                    {"url":"://nick.m.tmall.com?deliveryId=99496&sceneId=5387&hd_from_id=100085&fromToken=eP1w8QGUOexjRMbZu8DKHMgpc6UGUgUXUJ&implId=cloudsail_1226_125400501040003_99496_0","wait":20},
-                    {"url":"://nick.m.tmall.com?deliveryId=99496&sceneId=5387&hd_from_id=100085&fromToken=eP1w8QGUOexjRMbZu8DKHMgpc6UGUgUXUJ&implId=cloudsail_1226_125400501040003_99496_1","wait":20},
-                    {"url":"://nick.m.tmall.com?deliveryId=99496&sceneId=5387&hd_from_id=100085&fromToken=eP1w8QGUOexjRMbZu8DKHMgpc6UGUgUXUJ&implId=cloudsail_1226_125400501040003_99496_2","wait":20}
-                ],
+                "before":[],
                 "item":[
-                    "45310","99789","89750","77523",
-                    "89639","89639","89639","89639","89639",
                     "46315","46315","46315","46315","46315","46315",
-                    "78118","78118","78118",
-                    "45306","45308","85552","85151","83906","45318",
-                    "93729","89070","90722","82146","99031","90342",
-                    "28876","50976","45290","96681"
+                    "45306","45306","45306","45306","45306"
                 ]
             }
         }
