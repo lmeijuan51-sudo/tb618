@@ -41,7 +41,7 @@
                 "baseurl":"://market.m.taobao.com/app/tbsearchwireless-pages/tao-gold-srp-task-pop/index?deliveryId=占位参数1&sceneId=5387&q=iphone",
                 "wait":18,
                 "wait2":"",
-                "param":{"商品定位":["nike","anta","adidas","chanel","dior","biotherm","oppo"]},
+                "param":{"商品定位":[""商品定位":["手机","电脑","耳机","键盘","相机","音响","平板"]"]},
                 "before":[
                     {"url":"://nick.m.tmall.com?deliveryId=99496&sceneId=5387&hd_from_id=100085&fromToken=eP1w8QGUOexjRMbZu8DKHMgpc6UGUgUXUJ&implId=cloudsail_1226_125400501040003_99496_0","wait":20},
                     {"url":"://nick.m.tmall.com?deliveryId=99496&sceneId=5387&hd_from_id=100085&fromToken=eP1w8QGUOexjRMbZu8DKHMgpc6UGUgUXUJ&implId=cloudsail_1226_125400501040003_99496_1","wait":20},
