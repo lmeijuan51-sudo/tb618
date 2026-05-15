@@ -1,0 +1,120 @@
+{
+    "activity":{
+
+        "tip":"全部运行完再看任务完成度\n---------------\n一个手机不能运行超过三个账号\n---------------\n点击开始任务自动运行",
+        "list":[
+                
+                "❤️开始任务❤️"
+            ],
+        "mapping" :{
+      
+            "活动入口":{
+                "list":[
+                    "淘宝",
+                    "天猫",
+                    "点淘"
+                ],
+                "mapping":{
+                    "淘宝":{
+                        "url":"taobao://pages.tmall.com/wow/z/wt/daily-earn-shee/8thjJK38HwhfMAskzDiN?disableNav=YES"
+                    },
+                    "天猫":{
+                        "url":"tmall://page.tm/appLink?&action=ali.open.nav&h5Url=https%3A%2F%2Fpages.tmall.com%2Fwow%2Fz%2Fwt%2Fdaily-earn-shee%2F8thjJK38HwhfMAskzDiN%3FdisableNav%3DYES"
+                    },
+                    "点淘":{
+                        "url":"taobaoliveshare://pages.tmall.com/wow/z/wt/daily-earn-shee/8thjJK38HwhfMAskzDiN?disableNav=YES"
+                    }
+                }
+                
+            },
+          
+            
+            "饿了么红包":{
+                "url":"eleme://web?url=https://m.tb.cn/h.fHjEo2X"
+            },
+             "8月2-15支付宝天天领红包":{
+                "url":"alipays://platformapi/startapp?appId=68687715&url=https%3A%2F%2Frender.alipay.com%2Fp%2Fc%2F180020180000047875%2Fpages%2Findex%2Findex.html%3FuserId%3D2088802913327612&userId=2088802913327612&titlePenetrate=YES&chInfo=ch_share__chsub_CopyLink"
+            },
+           
+            "淘特-天天领红包 09-07":{
+                 "url":"taobao://m.tb.cn/h.fcElrTQ"
+            
+            },
+            "美食币活动入口":{
+                "url":"taobao://huodong.m.taobao.com/act/snipcodeupdate.html?_ariver_appid=1000473"
+            },
+      
+
+           
+
+            
+            "❤️开始任务❤️":{
+                "type":"task",
+                "key":["赚话费"]
+                
+            }
+            
+            
+            
+        },
+
+        "taskList":["赚话费"]
+                
+    },
+
+    "taskData":{
+           
+            "tag":"zhuanhuafei",
+            "common":{
+            "url":"https://raw.gitcode.com/junjun_1/tb618/raw/main/tb.txt"
+            
+            },
+
+            "赚话费":{
+                "type":"task1",
+              
+                "endpage": "taobao://m.taobao.com/tbopen/index.html?h5Url=https%3A%2F%2Fm.taobao.com",
+                "main":"taobao://m.taobao.com/tbopen/index.html?h5Url=https%3A%2F%2Fm.taobao.com",
+                "endMessage":"种树任务结束",
+                
+                "task":{
+                    "tag":"zhuanhuafei",
+                    "scheme":"taobao://m.taobao.com/tbopen/index.html?h5Url=",
+                    "baseurl":"://market.m.taobao.com/app/tbsearchwireless-pages/tao-gold-srp-task-pop/index?deliveryId=占位参数1&sceneId=8917&q=iphone",
+                    "wait":15,
+                    "wait2":"",
+                    "param":{
+                        "商品定位":["nike","anta","adidas","chanel","dior","biotherm","oppo"]
+                    },
+                    "before":[
+                        
+                    ],
+                    "item": [
+                        
+
+                        "100340","100340","100340","100340","100340","100340","100340","100340","100340","100340",
+                        "100453","100453","100453","100453","100453","100453","100453","100453","100453","100453",
+                        "100531",
+                        "99889",
+                        "100454","100454","100454","100454","100454",
+                        
+                        "100493","100493","100493","100493","100493",
+                        
+                        "99658",
+                        "99672",
+                        "99666",
+                        "99889",
+                        "99720",
+                        "90782",
+
+                        "100638",
+                        "100447"
+                    ]
+
+                 }
+            }
+
+
+
+    }
+}
