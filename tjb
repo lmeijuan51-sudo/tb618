@@ -75,7 +75,7 @@
     "taskData":{
         "tag":"tjbb",
         "common":{
-            "url":"https://raw.githubusercontent.com/lmeijuan51-sudo/tb618/refs/heads/main/tf"
+            "url":"https://raw.githubusercontent.com/lmeijuan51-sudo/tb618/main/tb.txt"
         },
         "赚话费":{
             "type":"task1",
