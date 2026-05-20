@@ -1,6 +1,6 @@
 function run () {
-    var pvStr = 'iAsPfl1';
-    var endStr = 'R2VIDrE';
+    var pvStr = 'RdudpTp';
+    var endStr = 'RX14fDu';
     var data = [];
     var More = configValue ? configValue : 1;
 
