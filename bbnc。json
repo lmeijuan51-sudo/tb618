@@ -1,8 +1,8 @@
 ```javascript
 function run() {
     // 1. 更新为你的最新暗号
-    var pvStr = 'RaNWHQ2'; 
-    var endStr = 'iA1LaGO';
+    var pvStr = 'Rdlhy3A';
+    var endStr = 'ReUXgXq';
     
     var data = [];
     // 兼容快捷指令传入的变量
